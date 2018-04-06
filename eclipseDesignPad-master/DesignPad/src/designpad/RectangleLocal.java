@@ -94,15 +94,38 @@ public class RectangleLocal implements Shape, Serializable {
     }
     
     public Vector<Point2D> pointsOnShape() {
-    		
+    		points = new Vector<Point2D>();
     	
     		for(int x1=x; x1<x+width; x1++) {
-    			
+    			point = new Point2D.Double(x1,y);
+    			points.add(point);
+    			point.setLocation(x1, y+height);
+    			points.add(point);
+    			point = new Point2D.Double(x1,y+1);
+    			points.add(point);
+    			point.setLocation(x1, y+height+1);
+    			points.add(point);
+    			point = new Point2D.Double(x1,y-1);
+    			points.add(point);
+    			point.setLocation(x1, y+height-1);
+    			points.add(point);
     		}
     		
-    		for(int x1=y; x1<y+height; x1++) {
-    			
+    		for(int y1=y; y1<y+height; y1++) {
+    			point = new Point2D.Double(x,y1);
+    			points.add(point);
+    			point.setLocation(x+width, y1);
+    			points.add(point);
+    			point = new Point2D.Double(x+1,y1);
+    			points.add(point);
+    			point.setLocation(x+width+1, y1);
+    			points.add(point);
+    			point = new Point2D.Double(x-1,y1);
+    			points.add(point);
+    			point.setLocation(x+width-1, y1);
+    			points.add(point);
     		}
+    		
     		return points;
     }
     

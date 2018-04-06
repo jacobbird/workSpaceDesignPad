@@ -99,6 +99,7 @@ public class DesignPad extends Application {
     private SwingNode swingNode;
     private double zoom;
     private double oldZoom;
+    boolean select;
     /*public void start(Stage primaryStage){
         Pane canvas = new Pane();
         RectangleLocal rl = new RectangleLocal();
@@ -129,6 +130,7 @@ public class DesignPad extends Application {
         control1 = true;
         oldZoom = 1;
         zoom = 1;
+        select=false;
         
         r = new RectDraw();
         r.setPreferredSize(new Dimension(12000,12000));
@@ -538,6 +540,7 @@ public class DesignPad extends Application {
         Button ovalButton = new Button();
         Button curveButton = new Button();
         Button undoButton = new Button();
+        Button selectButton = new Button();
 
         squareButton.setText("Square");
         rectangleButton.setText("Rectangle");
@@ -545,6 +548,7 @@ public class DesignPad extends Application {
         ovalButton.setText("Oval");
         curveButton.setText("Curve");
         undoButton.setText("Undo");
+        selectButton.setText("Select");
 
         squareButton.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -609,12 +613,25 @@ public class DesignPad extends Application {
             	}
             }
         });
+        
+        selectButton.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+            		if(r.getSelect()==false) {
+            			r.setSelect();
+            		}
+            		else {
+            			r.unsetSelect();
+            		}
+            }
+        });
 
         HBox hbButtons = new HBox();
         hbButtons.setSpacing(10);
         hbButtons.setPadding(new Insets(10, 20, 10, 20));
         hbButtons.getChildren().addAll(squareButton, rectangleButton,
-                circleButton, ovalButton, curveButton, undoButton);
+                circleButton, ovalButton, curveButton, undoButton, selectButton);
 
         BorderPane bp2 = new BorderPane();
         bp2.setTop(hbButtons);

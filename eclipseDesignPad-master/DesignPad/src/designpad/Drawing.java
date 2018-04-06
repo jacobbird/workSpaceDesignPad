@@ -6,9 +6,12 @@
 package designpad;
 
 import java.awt.Graphics2D;
+import java.awt.geom.Point2D;
 import java.io.Serializable;
 import java.util.Iterator;
 import java.util.Stack;
+import java.util.Vector;
+
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.CubicCurve;
 import javafx.scene.shape.Ellipse;
@@ -64,6 +67,32 @@ public class Drawing implements Serializable {
     
     public void removeShape(){
         sStack.pop();
+    }
+    
+    public Shape selectShape(int x, int y) {
+    		Shape shape = null;
+    		try {
+    			Iterator it = sStack.iterator();
+    			while(it.hasNext()) {
+    				shape = (Shape)it.next();
+    				Vector<Point2D> vec = shape.pointsOnShape();
+    				boolean selectFlag=false;
+    				for(int z = 0; z < vec.size(); z++) {
+    					int a = (int) vec.get(z).getX();
+    					int b = (int) vec.get(z).getY();
+    					if(x==a && y==b) {
+    						shape.setSelectedTrue();
+    						selectFlag=true;
+    						break;	
+    					}
+    				}
+    				if(selectFlag==true) {
+    					break;
+    				}
+    			}
+    		}
+    		catch(Exception e) {}
+    		return shape;
     }
     
     public void draw(Graphics2D g2d){

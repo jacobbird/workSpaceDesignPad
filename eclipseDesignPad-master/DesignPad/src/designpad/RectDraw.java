@@ -58,7 +58,8 @@ public class RectDraw extends JPanel implements MouseListener, MouseMotionListen
     private double scaleFactor;
     private double prevScaleFactor;
     private double zoomRatio;
-    
+    private boolean select;
+    private Shape shape = null;
    
     public RectDraw(Point2D startPoint, Point2D endPoint){
        super();
@@ -124,7 +125,17 @@ public class RectDraw extends JPanel implements MouseListener, MouseMotionListen
     	control2=true;
     	
     }
-    
+     public void setSelect() {
+    	 	select = true;
+     }
+     
+     public void unsetSelect() {
+    	 	select = false;
+     }
+     
+     public boolean getSelect() {
+    	 	return select;
+     }
     
     public void addPoints(Point2D startPoint, Point2D endPoint){
         this.startPoint=null;
@@ -233,30 +244,42 @@ public class RectDraw extends JPanel implements MouseListener, MouseMotionListen
     
     @Override
 	public void mouseDragged(java.awt.event.MouseEvent me) {
-		if (currentMode == currentMode.curve) {
-            if (control1 == true ) {
-                mouseControlPoint1X = me.getX()*zoomRatio; //Step 2: Get first mouse Control Point.
-                mouseControlPoint1Y = me.getY()*zoomRatio;
-            }
-            else if (control1 == false) {
-            	mouseControlPoint3X = me.getX()*zoomRatio; //Step 4 and 10: Get control points 3.
-                mouseControlPoint3Y = me.getY()*zoomRatio; 
-            }
-        } else {
-            mouseEndPointX = me.getX()/scaleFactor;
-            mouseEndPointY = me.getY()/scaleFactor;
-        }
-        
-        
-        startPoint = new Point2D.Double(mouseStartPointX, mouseStartPointY);
-        endPoint = new Point2D.Double(mouseEndPointX, mouseEndPointY);
-        
+		if (select == true) {
+			
+			shape.setX((double)me.getX());
+			shape.setY((double)me.getY());
+		
+			repaint();
+		
+		}
+		else {
+	    		if (currentMode == currentMode.curve) {
+	            if (control1 == true ) {
+	                mouseControlPoint1X = me.getX()*zoomRatio; //Step 2: Get first mouse Control Point.
+	                mouseControlPoint1Y = me.getY()*zoomRatio;
+	            }
+	            else if (control1 == false) {
+	            	mouseControlPoint3X = me.getX()*zoomRatio; //Step 4 and 10: Get control points 3.
+	                mouseControlPoint3Y = me.getY()*zoomRatio; 
+	            }
+	        } else {
+	            mouseEndPointX = me.getX()/scaleFactor;
+	            mouseEndPointY = me.getY()/scaleFactor;
+	        }
+	        
+	        
+	        startPoint = new Point2D.Double(mouseStartPointX, mouseStartPointY);
+	        endPoint = new Point2D.Double(mouseEndPointX, mouseEndPointY);
+		}
 		
 	}
     
     @Override
 	public void mousePressed(MouseEvent me) {
-		if (currentMode == currentMode.curve) {
+		if(select==true) {
+			shape = drawing.selectShape(me.getX(), me.getY());
+		}
+		else if (currentMode == currentMode.curve) {
             if (control1 == true) {
                 mouseStartPointX = me.getX()*zoomRatio; // Step 1: First press recorded.
                 mouseStartPointY = me.getY()*zoomRatio;
@@ -268,14 +291,14 @@ public class RectDraw extends JPanel implements MouseListener, MouseMotionListen
             }
         } else {
         	
-        	if (control2==true) {
-        		control2 = false;
-        	}
-        	else {
-        		control2 = true;
-        	}
-            mouseStartPointX = me.getX()/scaleFactor;
-            mouseStartPointY = me.getY()/scaleFactor;
+        		if (control2==true) {
+        			control2 = false;
+        		}
+        		else {
+        			control2 = true;
+        		}
+        			mouseStartPointX = me.getX()/scaleFactor;
+        			mouseStartPointY = me.getY()/scaleFactor;
         }
 		
 		
