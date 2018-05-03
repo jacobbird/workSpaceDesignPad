@@ -313,7 +313,7 @@ public class DesignPad extends Application {
         });
 
         editMenu.getItems().add(redoMenuItem);
-        editMenu.getItems().add(new SeparatorMenuItem());
+        //editMenu.getItems().add(new SeparatorMenuItem());
 
         MenuItem cutMenuItem = new MenuItem("Cut");
         cutMenuItem.setOnAction(new EventHandler<ActionEvent>() {
@@ -324,7 +324,7 @@ public class DesignPad extends Application {
 
         });
 
-        editMenu.getItems().add(cutMenuItem);
+        //editMenu.getItems().add(cutMenuItem);
 
         MenuItem copyMenuItem = new MenuItem("Copy");
         copyMenuItem.setOnAction(new EventHandler<ActionEvent>() {
@@ -335,7 +335,7 @@ public class DesignPad extends Application {
 
         });
 
-        editMenu.getItems().add(copyMenuItem);
+        //editMenu.getItems().add(copyMenuItem);
 
         MenuItem pasteMenuItem = new MenuItem("Paste");
         pasteMenuItem.setOnAction(new EventHandler<ActionEvent>() {
@@ -346,7 +346,7 @@ public class DesignPad extends Application {
 
         });
 
-        editMenu.getItems().add(pasteMenuItem);
+        //editMenu.getItems().add(pasteMenuItem);
 
         Menu viewMenu = new Menu("View");
 
@@ -631,7 +631,7 @@ public class DesignPad extends Application {
         hbButtons.setSpacing(10);
         hbButtons.setPadding(new Insets(10, 20, 10, 20));
         hbButtons.getChildren().addAll(squareButton, rectangleButton,
-                circleButton, ovalButton, curveButton, undoButton, selectButton);
+                circleButton, ovalButton, curveButton, undoButton);
 
         BorderPane bp2 = new BorderPane();
         bp2.setTop(hbButtons);

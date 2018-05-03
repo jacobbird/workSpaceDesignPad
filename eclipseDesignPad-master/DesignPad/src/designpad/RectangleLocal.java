@@ -80,17 +80,18 @@ public class RectangleLocal implements Shape, Serializable {
         secondPoint2D = p2D;
     }
     
-    public void setX(Double x) {
-		firstPoint2D.setLocation(x, firstPoint2D.getY());
+    public void setX(int mouseX) {
 		
+		firstPoint2D.setLocation(mouseX,firstPoint2D.getY());
     }
 
-    public void setY(Double y) {
-    		firstPoint2D.setLocation(firstPoint2D.getX(), y);
+    public void setY(int mouseY) {
+	
+		firstPoint2D.setLocation( firstPoint2D.getX(), mouseY);
     }
-    
-    public void setWidthHeight(int width, int height) {
-    		secondPoint2D.setLocation(firstPoint2D.getX()+width, firstPoint2D.getY()+height);
+
+    public void setWidthHeight() {
+		secondPoint2D.setLocation(firstPoint2D.getX()+width, firstPoint2D.getY()+height);
     }
     
     public Vector<Point2D> pointsOnShape() {

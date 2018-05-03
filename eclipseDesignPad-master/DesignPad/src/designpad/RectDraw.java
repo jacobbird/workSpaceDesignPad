@@ -197,7 +197,7 @@ public class RectDraw extends JPanel implements MouseListener, MouseMotionListen
         	sha.setPoint2DFirst(startPoint);
         	sha.setPoint2DSecond(endPoint);
         	sha.draw(g2d);
-        
+        +
         }
         else if(currentMode == modes.circle && startPoint != null && endPoint != null) {
         	sha = new CircleLocal();
@@ -246,10 +246,10 @@ public class RectDraw extends JPanel implements MouseListener, MouseMotionListen
 	public void mouseDragged(java.awt.event.MouseEvent me) {
 		if (select == true) {
 			
-			shape.setX((double)me.getX());
-			shape.setY((double)me.getY());
-		
-			repaint();
+			shape.setX(me.getX());
+			shape.setY(me.getY());
+			shape.setWidthHeight();
+			
 		
 		}
 		else {
@@ -276,7 +276,8 @@ public class RectDraw extends JPanel implements MouseListener, MouseMotionListen
     
     @Override
 	public void mousePressed(MouseEvent me) {
-		if(select==true) {
+		
+    		if(select==true) {
 			shape = drawing.selectShape(me.getX(), me.getY());
 		}
 		else if (currentMode == currentMode.curve) {

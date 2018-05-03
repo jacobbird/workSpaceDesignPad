@@ -30,17 +30,28 @@ public class CubicCurveLocalShape implements Shape, Serializable {
 	private boolean selected;
 	private Point2D point;
 	private Vector<Point2D> points;
+	private double x;
+	private double y;
+	private double width;
+	private double height;
+	
     
     CubicCurveLocalShape(){
         cCArray = new Stack<CCurveLocal>();
     }
     
-    public void setX(Double mouseX) {
-    	
+    public void setX(int mouseX) {
+		
+		firstPoint2D.setLocation(mouseX - firstPoint2D.getX(),firstPoint2D.getY());
+    }
+
+    public void setY(int mouseY) {
+		
+		firstPoint2D.setLocation( firstPoint2D.getX(), mouseY - firstPoint2D.getY());
     }
     
-    public void setY(Double mouseY) {
-    	
+    public void setWidthHeight() {
+		secondPoint2D.setLocation(firstPoint2D.getX()+width, firstPoint2D.getY()+height);
     }
     
     public Vector<Point2D> pointsOnShape(){

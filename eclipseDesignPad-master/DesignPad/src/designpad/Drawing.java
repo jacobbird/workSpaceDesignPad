@@ -92,6 +92,7 @@ public class Drawing implements Serializable {
     			}
     		}
     		catch(Exception e) {}
+    		
     		return shape;
     }
     

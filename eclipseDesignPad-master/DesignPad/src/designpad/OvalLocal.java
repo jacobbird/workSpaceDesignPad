@@ -63,12 +63,18 @@ public class OvalLocal implements Shape, Serializable{
     		selected=false;
     }
     
-    public void setX(Double x) {
-		this.x=x;
+    public void setX(int mouseX) {
+		
+		firstPoint2D.setLocation(mouseX - firstPoint2D.getX(),firstPoint2D.getY());
     }
 
-    public void setY(Double y) {
-		this.y=y;
+    public void setY(int mouseY) {
+		
+		firstPoint2D.setLocation( firstPoint2D.getX(), mouseY - firstPoint2D.getY());
+    }
+    
+    public void setWidthHeight() {
+		secondPoint2D.setLocation(firstPoint2D.getX()+width, firstPoint2D.getY()+height);
     }
     
     public Vector<Point2D> pointsOnShape(){

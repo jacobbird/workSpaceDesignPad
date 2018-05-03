@@ -19,8 +19,9 @@ public interface Shape {
     
     public void setSelectedTrue();
     public void setSelectedFalse();
-    public void setX(Double mouseX);
-    public void setY(Double mouseY);
+    public void setX(int mouseX);
+    public void setY(int mouseY);
+    public void setWidthHeight();
     public Vector<Point2D> pointsOnShape();
     public void setPoint2DFirst(Point2D firstPoint);
     public void setPoint2DSecond(Point2D secondPoint);

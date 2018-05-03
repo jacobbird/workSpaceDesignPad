@@ -104,14 +104,18 @@ public class CircleLocal implements Shape, Serializable{
     		selected=false;
     }
     
-    public void setX(Double mouseX) {
-    		double deltaX = mouseX-this.x;
-    		double x = mouseX - deltaX;
+    public void setX(int mouseX) {
+		
+		firstPoint2D.setLocation(mouseX - firstPoint2D.getX(),firstPoint2D.getY());
+    }
+
+    public void setY(int mouseY) {
+		
+		firstPoint2D.setLocation( firstPoint2D.getX(), mouseY - firstPoint2D.getY());
     }
     
-    public void setY(Double mouseY) {
-    		double deltaY = mouseY - this.x;
-    		double y = mouseY - deltaY;
+    public void setWidthHeight() {
+		secondPoint2D.setLocation(firstPoint2D.getX()+width, firstPoint2D.getY()+height);
     }
     
     
